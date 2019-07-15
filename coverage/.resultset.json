@@ -1,15 +1,44 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/student/Documents/projects/bookmarks/spec/feature/homepage_welcome_spec.rb": [
+      "/Users/harryriley/GoogleDrive/Harry/Python/makers/Projects/makers-course/week_4/bookmarks/spec/feature/homepage_welcome_spec.rb": [
         1,
         1,
         1,
         1,
         null,
         null
+      ],
+      "/Users/harryriley/GoogleDrive/Harry/Python/makers/Projects/makers-course/week_4/bookmarks/spec/feature/view_bookmarks_spec.rb": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        null,
+        null
+      ],
+      "/Users/harryriley/GoogleDrive/Harry/Python/makers/Projects/makers-course/week_4/bookmarks/spec/unit/bookmark_spec.rb": [
+        1,
+        null,
+        1,
+        null,
+        1,
+        1,
+        1,
+        null,
+        null,
+        null
+      ],
+      "/Users/harryriley/GoogleDrive/Harry/Python/makers/Projects/makers-course/week_4/bookmarks/app/models/bookmark.rb": [
+        1,
+        null,
+        1,
+        2,
+        null,
+        null
       ]
     },
-    "timestamp": 1563199360
+    "timestamp": 1563201576
   }
 }
