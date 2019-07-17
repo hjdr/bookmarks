@@ -18,7 +18,7 @@ describe Bookmark do
   describe "#create" do
     context "when a user adds a bookmark" do
       it "saves it to the database" do
-        Bookmark.create('www.cockandballs.com')
+        Bookmark.create(url: 'www.cockandballs.com')
         expect(Bookmark.list).to include('www.cockandballs.com')
       end
     end
