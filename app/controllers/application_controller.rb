@@ -1,12 +1,16 @@
 require 'sinatra/base'
+require 'sinatra/flash'
+require 'uri'
 require './app/models/Bookmark.rb'
+require './database_connection_setup.rb'
 
 class ApplicationManager < Sinatra::Base
 
   configure do
-    enable :session, :method_override
+    enable :sessions, :method_override
     set :views, "app/views"
     set :public_dir, "public"
+    register Sinatra::Flash
   end
 
   get '/'  do
@@ -23,7 +27,7 @@ class ApplicationManager < Sinatra::Base
   end
 
   post '/bookmarks-added' do
-    Bookmark.create(url: params[:url], title: params[:title])
+    flash[:notice] = 'Incorrect format! Please ensure the domain is predicated with -> https://www.' unless Bookmark.create(url: params[:url], title: params[:title])
     redirect '/'
   end
 
@@ -38,7 +42,7 @@ class ApplicationManager < Sinatra::Base
     
   end
 
-  patch '/bookmarks' do
+  patch '/bookmarks/:id' do
     Bookmark.update(id: params[:id], title: params[:title], url: params[:url])
     redirect ('/bookmarks')
   end
@@ -46,4 +50,3 @@ class ApplicationManager < Sinatra::Base
   run! if app_file == $0
 
 end
-#hi
