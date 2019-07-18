@@ -4,7 +4,7 @@ require './app/models/Bookmark.rb'
 class ApplicationManager < Sinatra::Base
 
   configure do
-    enable :session
+    enable :session, :method_override
     set :views, "app/views"
     set :public_dir, "public"
   end
@@ -23,8 +23,13 @@ class ApplicationManager < Sinatra::Base
   end
 
   post '/bookmarks-added' do
-    Bookmark.create(url: params['url'], title: params['title'])
+    Bookmark.create(url: params[:url], title: params[:title])
     redirect '/'
+  end
+
+  delete '/bookmarks/:id' do
+    Bookmark.delete(id: params[:id])
+    redirect '/bookmarks'
   end
 
   run! if app_file == $0
