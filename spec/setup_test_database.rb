@@ -1,9 +1,10 @@
 require 'pg'
+require './database_connection.rb'
 
 p 'Setting up database...'
 
 def setup_test_database
-  connection = PG.connect(dbname: 'bookmark_manager_test')
+  DatabaseConnection.setup( 'bookmark_manager_test')
 
-  connection.exec("TRUNCATE bookmarks;")
+  DatabaseConnection.query("TRUNCATE bookmarks, comments;")
 end

@@ -2,6 +2,7 @@ require './app/models/bookmark.rb'
 require 'database_helpers'
 
 describe Bookmark do
+  let(:comment_class) { double(:comment_class) }
 
   describe ".list" do
     it "displays the list of saved bookmarks" do
@@ -21,10 +22,10 @@ describe Bookmark do
     context "when a user adds a bookmark" do
       it "saves it to the database" do
         bookmark = Bookmark.create(url: 'http://www.cockandballs.com', title: 'Chicken Tennis')
-        persisted_data = persisted_data(id: bookmark.id)
+        persisted_data = persisted_data(table: 'bookmarks', id: bookmark.id)
 
         expect(bookmark).to be_a Bookmark
-        expect(bookmark.id).to eq persisted_data['id']
+        expect(bookmark.id).to eq persisted_data.first['id']
         expect(bookmark.url).to eq 'http://www.cockandballs.com'
         expect(bookmark.title).to eq 'Chicken Tennis'
       end
@@ -72,4 +73,14 @@ describe Bookmark do
       expect(result.url).to eq 'https://www.makersacademy.com'
     end
   end
+
+  describe '.comments' do
+    it 'calls .where on the Comment class' do
+      bookmark = Bookmark.create(title: 'Makers Academy', url: 'http://www.makersacademy.com')
+      expect(comment_class).to receive(:where).with(bookmark_id: bookmark.id)
+  
+      bookmark.comments(comment_class)
+    end
+  end
 end
+
